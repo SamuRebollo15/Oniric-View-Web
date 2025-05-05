@@ -4,21 +4,31 @@ document.addEventListener("DOMContentLoaded", function () {
   const contentBlocks = document.querySelectorAll('.content_container');
   const customCursor = document.getElementById('custom-cursor');
   const cursorText = document.getElementById('cursor-text');
+  const header = document.querySelector('header');
 
   const introVideo = document.getElementById('intro-video');
   const introScreen = document.getElementById('video-intro');
-  const header = document.querySelector('header');
 
-  introVideo.playbackRate = 4;
+  // Usar sessionStorage para que solo se muestre una vez por sesión de navegador
+  const videoAlreadyPlayed = sessionStorage.getItem('videoPlayed');
 
-  introVideo.onended = function () {
-    introScreen.classList.add('fade-out');
+  if (!videoAlreadyPlayed) {
+    introVideo.playbackRate = 4;
+
+    introVideo.onended = function () {
+      introScreen.classList.add('fade-out');
+      header.classList.add('animated');
+      sessionStorage.setItem('videoPlayed', 'true');
+      setTimeout(() => {
+        introScreen.style.display = 'none';
+      }, 1000);
+    };
+  } else {
+    introScreen.style.display = 'none';
     header.classList.add('animated');
-    setTimeout(() => {
-      introScreen.style.display = 'none';
-    }, 1000);
-  };
+  }
 
+  // Cursor personalizado
   document.addEventListener('mousemove', function (e) {
     customCursor.style.top = e.clientY + 'px';
     customCursor.style.left = e.clientX + 'px';
@@ -43,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  // Animación de hover para bloques
   contentBlocks.forEach(block => {
     block.addEventListener('mouseover', () => {
       const randomColor = colors[Math.floor(Math.random() * colors.length)];
@@ -56,6 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  // Animación al hacer scroll
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
