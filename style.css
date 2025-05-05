@@ -1,0 +1,223 @@
+@import url("https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap");
+
+body {
+  background-color: black;
+  margin: 0;
+  font-family: "Cal Sans", sans-serif;
+}
+
+/* Header fijo */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  background-color: black;
+}
+
+header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 6px;
+  width: 0;
+  background: linear-gradient(to right, #fc9c24, #cd1b7d, #2a347c);
+}
+
+header.animated::after {
+  animation: expand-line 0.8s ease-out forwards;
+}
+
+@keyframes expand-line {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Video intro */
+#video-intro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: black;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 1s ease;
+  opacity: 1;
+}
+
+#video-intro.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#video-intro video {
+  max-width: 90%;
+  max-height: 400px;
+  object-fit: contain;
+}
+
+/* Header content */
+.header_elements {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 6px 10px;
+  color: white;
+  font-size: medium;
+}
+
+.logo {
+  width: 250px;
+  height: auto;
+}
+
+.menu_item {
+  padding: 8px 16px;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+  cursor: default;
+  border: 2px solid transparent;
+  --hover-color: #fc9c24;
+}
+
+.menu_item:hover {
+  background-color: var(--hover-color);
+  color: black;
+  cursor: none;
+}
+
+/* Main layout */
+.containers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 20px;
+  gap: 60px;
+  margin-top: 80px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.content_container {
+  background-color: white;
+  color: black;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(50px);
+  transition: transform 0.6s ease, opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.content_container.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Cursor personalizado */
+#custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: border-color 0.2s ease, transform 0.1s ease;
+  z-index: 9999;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+#cursor-text {
+  font-size: 12px;
+  color: white;
+  font-weight: bold;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+/* Scroll infinito horizontal de logos */
+.scroller {
+  max-width: 100%;
+  margin: 20px auto; /* Más cerca del contenido superior */
+}
+
+.scroller__inner {
+  padding-block: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.scroller[data-animated="true"] {
+  overflow: hidden;
+  -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+  mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+}
+
+.scroller[data-animated="true"] .scroller__inner {
+  width: max-content;
+  flex-wrap: nowrap;
+  animation: scroll var(--_animation-duration, 40s) var(--_animation-direction, forwards) linear infinite;
+}
+
+.scroller[data-direction="right"] {
+  --_animation-direction: reverse;
+}
+.scroller[data-direction="left"] {
+  --_animation-direction: forwards;
+}
+.scroller[data-speed="fast"] {
+  --_animation-duration: 20s;
+}
+.scroller[data-speed="slow"] {
+  --_animation-duration: 60s;
+}
+
+.scroller__inner img {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+  filter: none;
+  transition: transform 0.3s ease;
+}
+
+.scroller__inner img:hover {
+  transform: scale(1.1);
+}
+
+@keyframes scroll {
+  to {
+    transform: translate(calc(-50% - 1rem));
+  }
+}
+
+.tituloempresa{
+  color: white;
+}
