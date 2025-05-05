@@ -81,19 +81,26 @@ header.animated::after {
   height: auto;
 }
 
-.menu_item {
+/* Menú enlaces (nuevos <a> como menú) */
+.menu_item,
+a.menu_item {
   padding: 8px 16px;
   border-radius: 9999px;
   transition: all 0.3s ease;
   cursor: default;
   border: 2px solid transparent;
   --hover-color: #fc9c24;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
 }
 
-.menu_item:hover {
+.menu_item:hover,
+a.menu_item:hover {
   background-color: var(--hover-color);
   color: black;
   cursor: none;
+  text-decoration: none;
 }
 
 /* Main layout */
@@ -218,11 +225,9 @@ header.animated::after {
   }
 }
 
-.tituloempresa{
+.tituloempresa {
   color: white;
 }
-
-
 
 /* === Footer === */
 .site-footer {
