@@ -304,3 +304,53 @@ a.menu_item:hover {
   font-size: 13px;
   color: #ccc;
 }
+
+
+
+
+
+
+
+
+
+
+.impresion3d-servicio {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  background-color: #111;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  max-width: 1000px;
+  margin: 40px auto; /* CENTRA la sección horizontalmente */
+  gap: 40px;
+}
+
+.impresion3d-texto {
+  flex: 1 1 400px;
+  color: white;
+}
+
+.impresion3d-texto h2 {
+  color: #fc9c24;
+  margin-bottom: 15px;
+}
+
+.impresion3d-texto p {
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.impresion3d-imagen {
+  flex: 1 1 400px;
+  text-align: center;
+}
+
+.impresion3d-imagen img {
+  max-width: 100%;
+  border: 4px solid #cd1b7d;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #cd1b7d;
+}
