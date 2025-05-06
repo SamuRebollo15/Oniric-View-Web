@@ -31,12 +31,8 @@ header.animated::after {
 }
 
 @keyframes expand-line {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
+  from { width: 0; }
+  to { width: 100%; }
 }
 
 /* Video intro */
@@ -66,7 +62,7 @@ header.animated::after {
   object-fit: contain;
 }
 
-/* Header content */
+/* Header contenido */
 .header_elements {
   display: flex;
   justify-content: space-around;
@@ -81,7 +77,6 @@ header.animated::after {
   height: auto;
 }
 
-/* Menú enlaces (nuevos <a> como menú) */
 .menu_item,
 a.menu_item {
   padding: 8px 16px;
@@ -103,7 +98,7 @@ a.menu_item:hover {
   text-decoration: none;
 }
 
-/* Main layout */
+/* Contenido principal */
 .containers {
   display: flex;
   flex-direction: column;
@@ -169,10 +164,10 @@ a.menu_item:hover {
   transition: opacity 0.2s ease;
 }
 
-/* Scroll infinito horizontal de logos */
+/* Scroll infinito horizontal */
 .scroller {
   max-width: 100%;
-  margin: 20px auto; /* Más cerca del contenido superior */
+  margin: 20px auto;
 }
 
 .scroller__inner {
@@ -303,54 +298,4 @@ a.menu_item:hover {
   margin-top: 30px;
   font-size: 13px;
   color: #ccc;
-}
-
-
-
-
-
-
-
-
-
-
-.impresion3d-servicio {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  background-color: #111;
-  padding: 40px;
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-  max-width: 1000px;
-  margin: 40px auto; /* CENTRA la sección horizontalmente */
-  gap: 40px;
-}
-
-.impresion3d-texto {
-  flex: 1 1 400px;
-  color: white;
-}
-
-.impresion3d-texto h2 {
-  color: #fc9c24;
-  margin-bottom: 15px;
-}
-
-.impresion3d-texto p {
-  line-height: 1.6;
-  font-size: 1rem;
-}
-
-.impresion3d-imagen {
-  flex: 1 1 400px;
-  text-align: center;
-}
-
-.impresion3d-imagen img {
-  max-width: 100%;
-  border: 4px solid #cd1b7d;
-  border-radius: 12px;
-  box-shadow: 0 0 10px #cd1b7d;
 }
