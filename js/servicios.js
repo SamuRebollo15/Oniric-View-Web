@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
         cursorText.style.opacity = 0;
       });
     });
-  
+    
     // Aparecer al hacer scroll (animación-scroll)
     const elementosAnimados = document.querySelectorAll('.animacion-scroll');
     const observer = new IntersectionObserver(entries => {
