@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Intro solo una vez por sesión
   const videoAlreadyPlayed = sessionStorage.getItem('videoPlayed');
-
   if (!videoAlreadyPlayed && introVideo) {
     introVideo.playbackRate = 4;
     introVideo.onended = function () {
@@ -21,14 +20,16 @@ document.addEventListener("DOMContentLoaded", function () {
       }, 1000);
     };
   } else {
-    introScreen.style.display = 'none';
+    if (introScreen) introScreen.style.display = 'none';
     header.classList.add('animated');
   }
 
   // Cursor personalizado
   document.addEventListener('mousemove', function (e) {
-    customCursor.style.top = e.clientY + 'px';
-    customCursor.style.left = e.clientX + 'px';
+    if (customCursor) {
+      customCursor.style.top = e.clientY + 'px';
+      customCursor.style.left = e.clientX + 'px';
+    }
   });
 
   menuItems.forEach(item => {
@@ -37,18 +38,19 @@ document.addEventListener("DOMContentLoaded", function () {
       const availableColors = colors.filter(c => c !== currentColor);
       const randomColor = availableColors[Math.floor(Math.random() * availableColors.length)];
       item.style.setProperty('--hover-color', randomColor);
-      customCursor.style.borderColor = randomColor;
-      cursorText.style.opacity = 1;
+      if (customCursor) customCursor.style.borderColor = randomColor;
+      if (cursorText) cursorText.style.opacity = 1;
     });
 
     item.addEventListener('mouseout', () => {
-      customCursor.style.borderColor = 'transparent';
-      cursorText.style.opacity = 0;
+      if (customCursor) customCursor.style.borderColor = 'transparent';
+      if (cursorText) cursorText.style.opacity = 0;
     });
   });
 
   // Animaciones en bloques al hacer scroll
   const contentBlocks = document.querySelectorAll('.content_container');
+  const blogEntries = document.querySelectorAll('.blog-entry');
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -57,19 +59,23 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }, { threshold: 0.2 });
 
-  contentBlocks.forEach(block => {
-    observer.observe(block);
+  function applyAnimationAndHoverEffect(blocks) {
+    blocks.forEach(block => {
+      observer.observe(block);
 
-    // Efecto de sombra con color al pasar el ratón
-    block.addEventListener('mouseenter', () => {
-      const color = colors[Math.floor(Math.random() * colors.length)];
-      block.style.boxShadow = `0 0 0 4px ${color}`;
-      block.style.transform = 'translateY(-10px)';
-    });
+      block.addEventListener('mouseenter', () => {
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        block.style.boxShadow = `0 0 0 4px ${color}`;
+        block.style.transform = 'translateY(-10px)';
+      });
 
-    block.addEventListener('mouseleave', () => {
-      block.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.3)';
-      block.style.transform = 'translateY(0)';
+      block.addEventListener('mouseleave', () => {
+        block.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.3)';
+        block.style.transform = 'translateY(0)';
+      });
     });
-  });
+  }
+
+  applyAnimationAndHoverEffect(contentBlocks);
+  applyAnimationAndHoverEffect(blogEntries);
 });
