@@ -342,3 +342,18 @@ a.menu_item:hover {
   font-size: 13px;
   color: #ccc;
 }
+
+.content_link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.content_link .content_container {
+  cursor: pointer;
+}
+
+.content_link:hover .content_container {
+  transform: scale(1.02);
+}
