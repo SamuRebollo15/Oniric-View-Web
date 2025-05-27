@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const colors = ['#fc9c24', '#cd1b7d', '#2a347c'];
   const menuItems = document.querySelectorAll('.menu_item');
   const contentBlocks = document.querySelectorAll('.content_container');
   const customCursor = document.getElementById('custom-cursor');
@@ -8,8 +7,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const introVideo = document.getElementById('intro-video');
   const introScreen = document.getElementById('video-intro');
 
-  // Control de reproducción del video de introducción
   const videoAlreadyPlayed = sessionStorage.getItem('videoPlayed');
+
+  // Reproducción del video de introducción
   if (!videoAlreadyPlayed && introVideo) {
     introVideo.playbackRate = 4;
     introVideo.onended = function () {
@@ -31,14 +31,15 @@ document.addEventListener("DOMContentLoaded", function () {
     customCursor.style.left = e.clientX + 'px';
   });
 
+  // Hover en menú (colores aleatorios siguen aquí si deseas)
+  const hoverColors = ['#fc9c24', '#cd1b7d', '#2a347c'];
   menuItems.forEach(item => {
     item.addEventListener('mouseover', () => {
-      let currentColor = item.style.getPropertyValue('--hover-color');
-      if (!colors.includes(currentColor)) currentColor = null;
-      const availableColors = colors.filter(color => color !== currentColor);
-      const randomColor = availableColors[Math.floor(Math.random() * availableColors.length)] || colors[0];
-      item.style.setProperty('--hover-color', randomColor);
-      customCursor.style.borderColor = randomColor;
+      const currentColor = item.style.getPropertyValue('--hover-color');
+      const filtered = hoverColors.filter(c => c !== currentColor);
+      const newColor = filtered[Math.floor(Math.random() * filtered.length)];
+      item.style.setProperty('--hover-color', newColor);
+      customCursor.style.borderColor = newColor;
       cursorText.style.opacity = 1;
     });
 
@@ -48,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Mostrar bloques con animación al hacer scroll
+  // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -62,9 +63,18 @@ document.addEventListener("DOMContentLoaded", function () {
   contentBlocks.forEach(block => {
     observer.observe(block);
 
-    // Sombra animada al pasar el ratón por encima
+    // Hover color fijo según categoría
     block.addEventListener('mouseenter', () => {
-      const color = colors[Math.floor(Math.random() * colors.length)];
+      let color = '#fc9c24'; // por defecto: formación
+
+      if (block.classList.contains('software')) {
+        color = '#2a347c';
+      } else if (block.classList.contains('multimedia')) {
+        color = '#cd1b7d';
+      } else if (block.classList.contains('formacion')) {
+        color = '#fc9c24';
+      }
+
       block.style.boxShadow = `0 0 0 4px ${color}`;
       block.style.transform = 'translateY(-10px)';
     });
