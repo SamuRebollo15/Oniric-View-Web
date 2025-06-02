@@ -4,17 +4,24 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const nombre = form.nombre.value;
-    const telefono = form.telefono.value;
-    const email = form.email.value;
-    const mensaje = form.mensaje.value;
+    const formData = new FormData(form);
 
-    const mailtoLink = `mailto:samuelrebollolazaro@gmail.com?subject=Contacto desde Oniric View&body=Nombre: ${encodeURIComponent(nombre)}%0ATeléfono: ${encodeURIComponent(telefono)}%0ACorreo: ${encodeURIComponent(email)}%0AMensaje: ${encodeURIComponent(mensaje)}`;
-
-    window.location.href = mailtoLink;
+    fetch("../enviar.php", {
+      method: "POST",
+      body: formData,
+    })
+    .then(response => response.text())
+    .then(data => {
+      alert(data); // ✅ Aquí puedes cambiar esto por una animación o texto HTML si lo prefieres
+      form.reset();
+    })
+    .catch(error => {
+      alert("❌ Error al enviar el mensaje.");
+      console.error("Error:", error);
+    });
   });
 
-  // Cursor personalizado (si quieres mantenerlo)
+  // Cursor personalizado
   const customCursor = document.getElementById('custom-cursor');
   const cursorText = document.getElementById('cursor-text');
 
