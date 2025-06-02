@@ -59,5 +59,40 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   
     elementosAnimados.forEach(el => observer.observe(el));
+
+
+// Menú móvil flotante
+  const menuBtn = document.getElementById("menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const closeBtn = document.getElementById("close-menu");
+
+  menuBtn?.addEventListener("click", () => {
+    mobileMenu?.classList.add("active");
+
+    // Reiniciar animaciones para los enlaces del menú
+    const links = mobileMenu?.querySelectorAll("a");
+    links?.forEach((link) => {
+      link.style.animation = "none";
+      link.offsetHeight; // Forzar reflujo
+      link.style.animation = "";
+    });
   });
+
+  closeBtn?.addEventListener("click", () => {
+    mobileMenu?.classList.remove("active");
+  });
+
+  mobileMenu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.remove("active");
+    });
+  });
+
+
+
+  });
+
+
+
+
   
