@@ -114,12 +114,12 @@ a.menu_item:hover {
 
 .row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Más ancho */
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 40px;
   width: 100%;
-  max-width: 1400px; /* Aumenta el contenedor para que use más ancho */
+  max-width: 1400px;
   margin-top: 40px;
-  padding: 0 40px; /* Un poco de padding lateral para evitar que pegue a los bordes */
+  padding: 0 40px;
 }
 
 .content_container {
@@ -185,21 +185,14 @@ a.menu_item:hover {
 
 .scroller[data-animated="true"] {
   overflow: hidden;
-  -webkit-mask: linear-gradient(
-    90deg,
-    transparent,
-    white 20%,
-    white 80%,
-    transparent
-  );
+  -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
   mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
 }
 
 .scroller[data-animated="true"] .scroller__inner {
   width: max-content;
   flex-wrap: nowrap;
-  animation: scroll var(--_animation-duration, 40s)
-    var(--_animation-direction, forwards) linear infinite;
+  animation: scroll var(--_animation-duration, 40s) var(--_animation-direction, forwards) linear infinite;
 }
 
 .scroller[data-direction="right"] {
@@ -248,16 +241,16 @@ a.menu_item:hover {
 .footer-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  max-width: 1200px;
-  margin: 0 auto;
+  justify-content: space-between;
+  align-items: flex-start;
   gap: 40px;
 }
 
 .footer-column {
-  flex: 1 1 200px;
+  flex: 1 1 250px;
   min-width: 200px;
 }
+
 
 .footer-column h3 {
   color: #fc9c24;
@@ -313,7 +306,6 @@ a.menu_item:hover {
   position: absolute;
   background-color: var(--accent-color);
   color: white;
-  text-decoration: none;
   padding: 0.5em 1em;
   border-radius: 100px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
@@ -359,14 +351,12 @@ a.menu_item:hover {
   display: block;
   max-width: 100%;
   max-height: 200px;
-  width: auto;
-  height: auto;
   object-fit: contain;
   margin: 0 auto 20px;
   border-radius: 12px;
 }
 
-/* Colores hover específicos por tipo de bloque */
+/* Hover colores por categoría */
 .content_container.software:hover {
   box-shadow: 0 0 0 4px #2a347c;
   transform: translateY(-10px);
@@ -382,19 +372,16 @@ a.menu_item:hover {
   transform: translateY(-10px);
 }
 
-/* Restaurar sombra original al salir del hover */
-.content_container {
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
-
 .content_container:not(:hover) {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   transform: translateY(0);
 }
-.Nuestros_proyectos{
+
+.Nuestros_proyectos {
   color: white;
   text-align: center;
 }
+
 .animacion-scroll {
   opacity: 0;
   visibility: hidden;
@@ -407,6 +394,7 @@ a.menu_item:hover {
   visibility: visible;
   transform: translateY(0);
 }
+
 .menu-toggle {
   display: none;
   background: none;
@@ -416,97 +404,113 @@ a.menu_item:hover {
   cursor: pointer;
 }
 
+/* Botón menú móvil */
+.menu-btn {
+  display: none;
+  background-color: black;
+  color: white;
+  border: 2px solid white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+  position: fixed;
+  top: 14px;
+  right: 35px;
+  z-index: 1001;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.menu-btn:hover {
+  background-color: white;
+  color: black;
+}
+
+/* Menú móvil flotante */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10000;
+  padding-top: 80px;
+}
+
+.mobile-menu a {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  margin: 16px 0;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.4s ease forwards;
+}
+
+.mobile-menu.active a:nth-of-type(1) { animation-delay: 0.1s; }
+.mobile-menu.active a:nth-of-type(2) { animation-delay: 0.2s; }
+.mobile-menu.active a:nth-of-type(3) { animation-delay: 0.3s; }
+.mobile-menu.active a:nth-of-type(4) { animation-delay: 0.4s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobile-menu a:hover {
+  color: #fc9c24;
+}
+
+.mobile-menu .close-btn {
+  position: absolute;
+  top: 20px;
+  right: 50px;
+  font-size: 36px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Mostrar menú */
+.mobile-menu.active {
+  display: flex;
+}
+
+/* Responsive móvil */
 @media (max-width: 768px) {
-  .header_elements {
-    flex-direction: column;
-    gap: 10px;
-    padding: 10px;
-    font-size: 14px;
-  }
-
-  .logo {
-    width: 180px;
-  }
-
-  .menu_item,
-  a.menu_item {
-    font-size: 14px;
-    padding: 6px 12px;
-  }
-
-  .containers {
-    padding: 30px 10px;
-    gap: 40px;
-  }
-
-  .row {
-    grid-template-columns: 1fr;
-    padding: 0 20px;
-  }
-
-  .content_container {
-    padding: 20px;
-  }
-
-  .bloque-imagen {
-    max-height: 150px;
-  }
-
-  .footer-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .socials-container {
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .socials-container a {
-    height: 48px;
-    width: 48px;
-    padding: 0.7em;
-  }
-
-  .socials-container a svg {
-    height: 24px;
-  }
-
-  .footer-column h3 {
-    text-align: center;
-  }
-
-  .footer-column ul {
-    text-align: center;
-  }
-  .menu-toggle {
-    display: block;
-  }
-
-  .nav-links {
+  .menu_item {
     display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: black;
-    width: 100%;
-    z-index: 998;
   }
 
-  .nav-links a {
-    padding: 15px;
-    border-top: 1px solid #333;
-    text-align: center;
-  }
-
-  .nav-links.active {
-    display: flex;
+  .menu-btn {
+    display: inline-block;
   }
 
   .header_elements {
-    flex-wrap: wrap;
     justify-content: space-between;
-    padding: 10px 20px;
+  }
+
+  
+}
+
+
+@media (max-width: 768px) {
+  .logo-column {
+    display: none !important;
   }
 }

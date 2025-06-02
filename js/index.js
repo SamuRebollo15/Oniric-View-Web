@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
     customCursor.style.left = e.clientX + "px";
   });
 
-  // Hover en menú (colores aleatorios siguen aquí si deseas)
+  // Hover en menú
   const hoverColors = ["#fc9c24", "#cd1b7d", "#2a347c"];
   menuItems.forEach((item) => {
     item.addEventListener("mouseover", () => {
@@ -66,17 +66,11 @@ document.addEventListener("DOMContentLoaded", function () {
   contentBlocks.forEach((block) => {
     observer.observe(block);
 
-    // Hover color fijo según categoría
     block.addEventListener("mouseenter", () => {
-      let color = "#fc9c24"; // por defecto: formación
-
-      if (block.classList.contains("software")) {
-        color = "#2a347c";
-      } else if (block.classList.contains("multimedia")) {
-        color = "#cd1b7d";
-      } else if (block.classList.contains("formacion")) {
-        color = "#fc9c24";
-      }
+      let color = "#fc9c24";
+      if (block.classList.contains("software")) color = "#2a347c";
+      else if (block.classList.contains("multimedia")) color = "#cd1b7d";
+      else if (block.classList.contains("formacion")) color = "#fc9c24";
 
       block.style.boxShadow = `0 0 0 4px ${color}`;
       block.style.transform = "translateY(-10px)";
@@ -102,10 +96,31 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   }
-  const toggleBtn = document.getElementById('menu-toggle');
-  const navLinks = document.getElementById('nav-links');
 
-  toggleBtn.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
+  // Menú móvil flotante
+  const menuBtn = document.getElementById("menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const closeBtn = document.getElementById("close-menu");
+
+  menuBtn?.addEventListener("click", () => {
+    mobileMenu?.classList.add("active");
+
+    // Reiniciar animaciones para los enlaces del menú
+    const links = mobileMenu?.querySelectorAll("a");
+    links?.forEach((link) => {
+      link.style.animation = "none";
+      link.offsetHeight; // Forzar reflujo
+      link.style.animation = "";
+    });
+  });
+
+  closeBtn?.addEventListener("click", () => {
+    mobileMenu?.classList.remove("active");
+  });
+
+  mobileMenu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.remove("active");
+    });
   });
 });
