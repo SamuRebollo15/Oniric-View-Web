@@ -23,7 +23,7 @@ header::after {
   left: 0;
   height: 6px;
   width: 0;
-  background: linear-gradient(to right,#2a347c, #cd1b7d ,#fc9c24);
+  background: linear-gradient(to right, #2a347c, #cd1b7d, #fc9c24);
 }
 
 header.animated::after {
@@ -185,14 +185,21 @@ a.menu_item:hover {
 
 .scroller[data-animated="true"] {
   overflow: hidden;
-  -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+  -webkit-mask: linear-gradient(
+    90deg,
+    transparent,
+    white 20%,
+    white 80%,
+    transparent
+  );
   mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
 }
 
 .scroller[data-animated="true"] .scroller__inner {
   width: max-content;
   flex-wrap: nowrap;
-  animation: scroll var(--_animation-duration, 40s) var(--_animation-direction, forwards) linear infinite;
+  animation: scroll var(--_animation-duration, 40s)
+    var(--_animation-direction, forwards) linear infinite;
 }
 
 .scroller[data-direction="right"] {
@@ -250,7 +257,6 @@ a.menu_item:hover {
   flex: 1 1 250px;
   min-width: 200px;
 }
-
 
 .footer-column h3 {
   color: #fc9c24;
@@ -404,15 +410,6 @@ a.menu_item:hover {
   cursor: pointer;
 }
 
-
-
-
-
-
-
-
-
-
 /* Botón menú móvil */
 .menu-btn {
   display: none;
@@ -464,10 +461,18 @@ a.menu_item:hover {
   animation: fadeInUp 0.4s ease forwards;
 }
 
-.mobile-menu.active a:nth-of-type(1) { animation-delay: 0.1s; }
-.mobile-menu.active a:nth-of-type(2) { animation-delay: 0.2s; }
-.mobile-menu.active a:nth-of-type(3) { animation-delay: 0.3s; }
-.mobile-menu.active a:nth-of-type(4) { animation-delay: 0.4s; }
+.mobile-menu.active a:nth-of-type(1) {
+  animation-delay: 0.1s;
+}
+.mobile-menu.active a:nth-of-type(2) {
+  animation-delay: 0.2s;
+}
+.mobile-menu.active a:nth-of-type(3) {
+  animation-delay: 0.3s;
+}
+.mobile-menu.active a:nth-of-type(4) {
+  animation-delay: 0.4s;
+}
 
 @keyframes fadeInUp {
   from {
@@ -513,10 +518,7 @@ a.menu_item:hover {
   .header_elements {
     justify-content: space-between;
   }
-
-  
 }
-
 
 @media (max-width: 768px) {
   .logo-column {

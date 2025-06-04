@@ -10,40 +10,40 @@ document.addEventListener("DOMContentLoaded", () => {
       method: "POST",
       body: formData,
     })
-    .then(response => response.text())
-    .then(data => {
-      alert(data); // ✅ Aquí puedes cambiar esto por una animación o texto HTML si lo prefieres
-      form.reset();
-    })
-    .catch(error => {
-      alert("❌ Error al enviar el mensaje.");
-      console.error("Error:", error);
-    });
+      .then((response) => response.text())
+      .then((data) => {
+        alert(data); // ✅ Aquí puedes cambiar esto por una animación o texto HTML si lo prefieres
+        form.reset();
+      })
+      .catch((error) => {
+        alert("❌ Error al enviar el mensaje.");
+        console.error("Error:", error);
+      });
   });
 
   // Cursor personalizado
-  const customCursor = document.getElementById('custom-cursor');
-  const cursorText = document.getElementById('cursor-text');
+  const customCursor = document.getElementById("custom-cursor");
+  const cursorText = document.getElementById("cursor-text");
 
-  document.addEventListener('mousemove', function (e) {
+  document.addEventListener("mousemove", function (e) {
     if (customCursor) {
-      customCursor.style.top = e.clientY + 'px';
-      customCursor.style.left = e.clientX + 'px';
+      customCursor.style.top = e.clientY + "px";
+      customCursor.style.left = e.clientX + "px";
     }
   });
 
-  const menuItems = document.querySelectorAll('.menu_item');
-  const colors = ['#fc9c24', '#cd1b7d', '#2a347c'];
+  const menuItems = document.querySelectorAll(".menu_item");
+  const colors = ["#fc9c24", "#cd1b7d", "#2a347c"];
 
-  menuItems.forEach(item => {
-    item.addEventListener('mouseover', () => {
+  menuItems.forEach((item) => {
+    item.addEventListener("mouseover", () => {
       const randomColor = colors[Math.floor(Math.random() * colors.length)];
-      item.style.setProperty('--hover-color', randomColor);
+      item.style.setProperty("--hover-color", randomColor);
       if (customCursor) customCursor.style.borderColor = randomColor;
       if (cursorText) cursorText.style.opacity = 1;
     });
-    item.addEventListener('mouseout', () => {
-      if (customCursor) customCursor.style.borderColor = 'transparent';
+    item.addEventListener("mouseout", () => {
+      if (customCursor) customCursor.style.borderColor = "transparent";
       if (cursorText) cursorText.style.opacity = 0;
     });
   });
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
     introScreen.style.display = "none";
     header.classList.add("animated");
   }
- // Menú móvil flotante
+  // Menú móvil flotante
   const menuBtn = document.getElementById("menu-btn");
   const mobileMenu = document.getElementById("mobile-menu");
   const closeBtn = document.getElementById("close-menu");
@@ -94,8 +94,4 @@ document.addEventListener("DOMContentLoaded", () => {
       mobileMenu.classList.remove("active");
     });
   });
-
-
-
-
 });

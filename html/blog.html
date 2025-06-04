@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog</title>
-  <link rel="stylesheet" href="../css/blog.css" />
-  <link rel="icon" href="../images/Mini_logo.png" />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    integrity="sha512-xD60G7rxN19z0MhxRXLwxYOjU/9x0CgUQzHJyR+jvw6aYExvDxUTuwW0oYu38yPl+FzF2A0hfvsn1TX8Wjjfbg=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog</title>
+    <link rel="stylesheet" href="../css/blog.css" />
+    <link rel="icon" href="../images/Mini_logo.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      integrity="sha512-xD60G7rxN19z0MhxRXLwxYOjU/9x0CgUQzHJyR+jvw6aYExvDxUTuwW0oYu38yPl+FzF2A0hfvsn1TX8Wjjfbg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <!-- Intro video -->
+    <div id="video-intro">
+      <video id="intro-video" autoplay muted playsinline>
+        <source
+          src="https://oniricview.s3.eu-north-1.amazonaws.com/Video/logo.vertical_blanco.mp4"
+          type="video/mp4"
+        />
+        Tu navegador no soporta video HTML5.
+      </video>
+    </div>
 
-  <!-- Intro video -->
-  <div id="video-intro">
-    <video id="intro-video" autoplay muted playsinline>
-      <source src="https://oniricview.s3.eu-north-1.amazonaws.com/Video/logo.vertical_blanco.mp4" type="video/mp4" />
-      Tu navegador no soporta video HTML5.
-    </video>
-  </div>
-
-  <!-- Header -->
-  <header>
+    <!-- Header -->
+    <header>
       <div class="header_elements">
         <a href="index.html">
           <img
@@ -53,51 +55,58 @@
       </div>
     </header>
 
-  <!-- Cursor personalizado -->
-  <div id="custom-cursor"><span id="cursor-text">Ir -></span></div>
-<br>
+    <!-- Cursor personalizado -->
+    <div id="custom-cursor"><span id="cursor-text">Ir -></span></div>
+    <br />
 
-  <!-- Contenido principal -->
-  <main class="blog-container">
-    <h1 class="blog-title">Últimas noticias</h1>
-    <div class="blog-entries">
-      
-      <article class="blog-entry animacion-scroll">
-        <div class="blog-content">
-          <h2>Innovaciones en impresión 3D</h2>
-          <p class="blog-date">Mayo 2025</p>
-          <p>Descubre cómo Oniric View está revolucionando la impresión 3D con resinas de alta precisión y acabados profesionales.</p>
-          <a href="#" class="blog-read-more">Leer más</a>
-        </div>
-      </article>
+    <!-- Contenido principal -->
+    <main class="blog-container">
+      <h1 class="blog-title">Últimas noticias</h1>
+      <div class="blog-entries">
+        <article class="blog-entry animacion-scroll">
+          <div class="blog-content">
+            <h2>Innovaciones en impresión 3D</h2>
+            <p class="blog-date">Mayo 2025</p>
+            <p>
+              Descubre cómo Oniric View está revolucionando la impresión 3D con
+              resinas de alta precisión y acabados profesionales.
+            </p>
+            <a href="#" class="blog-read-more">Leer más</a>
+          </div>
+        </article>
 
-      
-      <article class="blog-entry animacion-scroll">
-        <div class="blog-content">
-          <h2>Nuevos cursos de formación digital</h2>
-          <p class="blog-date">Abril 2025</p>
-          <p>Lanzamos programas de formación en software para diseñadores, ingenieros y creativos digitales.</p>
-          <a href="#" class="blog-read-more">Leer más</a>
-        </div>
-      </article>
-      
+        <article class="blog-entry animacion-scroll">
+          <div class="blog-content">
+            <h2>Nuevos cursos de formación digital</h2>
+            <p class="blog-date">Abril 2025</p>
+            <p>
+              Lanzamos programas de formación en software para diseñadores,
+              ingenieros y creativos digitales.
+            </p>
+            <a href="#" class="blog-read-more">Leer más</a>
+          </div>
+        </article>
 
-      <article class="blog-entry animacion-scroll">
-        <div class="blog-content">
-          <h2>Entrevista a los fundadores de Oniric View</h2>
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/d6o_Ap3ZwFc?si=dImVYEZ6OlnMpelF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-      </article>
+        <article class="blog-entry animacion-scroll">
+          <div class="blog-content">
+            <h2>Entrevista a los fundadores de Oniric View</h2>
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/d6o_Ap3ZwFc?si=dImVYEZ6OlnMpelF"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </article>
+      </div>
+    </main>
 
-      
-
-      
-
-    </div>
-  </main>
-
-  <!-- Footer -->
-   <footer class="site-footer">
+    <!-- Footer -->
+    <footer class="site-footer">
       <div class="footer-container">
         <div class="footer-column logo-column">
           <a href="index.html">
@@ -189,6 +198,6 @@
       </div>
     </footer>
 
-  <script src="../js/blog.js"></script>
-</body>
+    <script src="../js/blog.js"></script>
+  </body>
 </html>

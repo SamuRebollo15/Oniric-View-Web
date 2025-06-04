@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
   const menuItems = document.querySelectorAll(".menu_item");
-  const contentBlocks = document.querySelectorAll(".content_container.animacion-scroll");
+  const contentBlocks = document.querySelectorAll(
+    ".content_container.animacion-scroll"
+  );
   const customCursor = document.getElementById("custom-cursor");
   const cursorText = document.getElementById("cursor-text");
   const header = document.querySelector("header");
