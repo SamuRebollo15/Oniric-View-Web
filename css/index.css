@@ -23,7 +23,7 @@ header::after {
   left: 0;
   height: 6px;
   width: 0;
-  background: linear-gradient(to right, #fc9c24, #cd1b7d, #2a347c);
+  background: linear-gradient(to right,#2a347c, #cd1b7d ,#fc9c24);
 }
 
 header.animated::after {
