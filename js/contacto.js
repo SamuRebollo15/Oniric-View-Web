@@ -1,25 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("contact-form");
-
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const formData = new FormData(form);
-
-    fetch("../enviar.php", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => response.text())
-      .then((data) => {
-        alert(data); // ✅ Aquí puedes cambiar esto por una animación o texto HTML si lo prefieres
-        form.reset();
-      })
-      .catch((error) => {
-        alert("❌ Error al enviar el mensaje.");
-        console.error("Error:", error);
-      });
-  });
+ 
 
   // Cursor personalizado
   const customCursor = document.getElementById("custom-cursor");
