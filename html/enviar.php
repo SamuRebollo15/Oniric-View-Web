@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $email    = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
   $mensaje  = htmlspecialchars(trim($_POST["mensaje"]));
 
-  $destino = "samuelrebollolazaro@gmail.com";
+  $destino = "info@oniricview.com";
   $asunto = "📩 Nuevo mensaje desde el formulario de contacto";
   $contenido = "Nombre: $nombre\n";
   $contenido .= "Teléfono: $telefono\n";
