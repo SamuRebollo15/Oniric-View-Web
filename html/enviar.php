@@ -3,25 +3,44 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+$resultado = false;
+$errorCaptcha = false;
+
 // Procesar si se ha enviado por POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $nombre   = htmlspecialchars(trim($_POST["nombre"]));
-  $telefono = htmlspecialchars(trim($_POST["telefono"]));
-  $email    = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
-  $mensaje  = htmlspecialchars(trim($_POST["mensaje"]));
+  // Verificar CAPTCHA
+  $recaptcha = $_POST['g-recaptcha-response'] ?? '';
 
-  $destino = "info@oniricview.com";
-  $asunto = "📩 Nuevo mensaje desde el formulario de contacto";
-  $contenido = "Nombre: $nombre\n";
-  $contenido .= "Teléfono: $telefono\n";
-  $contenido .= "Email: $email\n\n";
-  $contenido .= "Mensaje:\n$mensaje\n";
+  if (empty($recaptcha)) {
+    $errorCaptcha = true;
+  } else {
+    $secret = ""; // <-- Sustituye con tu clave secreta de Google
+    $verifyResponse = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secret}&response={$recaptcha}");
+    $responseData = json_decode($verifyResponse);
 
-  $cabeceras = "From: $email\r\n";
-  $cabeceras .= "Reply-To: $email\r\n";
-  $cabeceras .= "Content-Type: text/plain; charset=UTF-8\r\n";
+    if ($responseData->success) {
+      // Validación correcta, procesar el formulario
+      $nombre   = htmlspecialchars(trim($_POST["nombre"]));
+      $telefono = htmlspecialchars(trim($_POST["telefono"]));
+      $email    = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
+      $mensaje  = htmlspecialchars(trim($_POST["mensaje"]));
 
-  $resultado = mail($destino, $asunto, $contenido, $cabeceras);
+      $destino = "samuelrebollolazaro@gmail.com";
+      $asunto = "📩 Nuevo mensaje desde el formulario de contacto";
+      $contenido = "Nombre: $nombre\n";
+      $contenido .= "Teléfono: $telefono\n";
+      $contenido .= "Email: $email\n\n";
+      $contenido .= "Mensaje:\n$mensaje\n";
+
+      $cabeceras = "From: $email\r\n";
+      $cabeceras .= "Reply-To: $email\r\n";
+      $cabeceras .= "Content-Type: text/plain; charset=UTF-8\r\n";
+
+      $resultado = mail($destino, $asunto, $contenido, $cabeceras);
+    } else {
+      $errorCaptcha = true;
+    }
+  }
 }
 ?>
 <!DOCTYPE html>
@@ -52,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       border-left: 6px solid #e74c3c;
     }
     body {
-      background-color: #000; /* fondo oscuro coherente */
+      background-color: #000;
     }
   </style>
 </head>
@@ -70,13 +89,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </header>
 
   <main>
-    <div class="mensaje-respuesta <?= isset($resultado) && $resultado ? 'success' : 'error' ?>">
-      <?php if (isset($resultado) && $resultado): ?>
+    <div class="mensaje-respuesta 
+      <?= $resultado ? 'success' : 'error' ?>">
+      <?php if ($resultado): ?>
         <h2>✅ Tu mensaje fue enviado correctamente.</h2>
         <p>Gracias por contactar con Oniric View. Te responderemos lo antes posible.</p>
+      <?php elseif ($errorCaptcha): ?>
+        <h2>❌ Falló la verificación del reCAPTCHA.</h2>
+        <p>Por favor, marca la casilla “No soy un robot” e intenta de nuevo.</p>
       <?php else: ?>
         <h2>❌ Hubo un error al enviar el mensaje.</h2>
-        <p>Por favor, revisa la configuración o intenta más tarde.</p>
+        <p>Por favor, inténtalo más tarde.</p>
       <?php endif; ?>
       <br>
       <a href="contacto.html" style="color: #fc9c24; text-decoration: underline;">Volver al formulario</a>

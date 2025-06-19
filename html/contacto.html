@@ -6,6 +6,8 @@
     <title>Contacto - Oniric View</title>
     <link rel="stylesheet" href="../css/contacto.css" />
     <link rel="icon" href="../images/Mini_logo.png" />
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
   </head>
 
   <body>
@@ -86,6 +88,8 @@
             placeholder="Tu mensaje"
             required
           ></textarea>
+          <div class="g-recaptcha" data-sitekey=""></div>  <!-- Aquí en data-sitekey tienes que poner tu clave de Google Recaptcha v2 para que apareza la opción de captcha porque sino no apartece, OJO la pública la privada va en el php -->
+
           <button type="submit">Enviar mensaje</button>
         </form>
       </section>
